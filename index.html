@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+</head>
+<body>
+
+<canvas id="canvas" width="168" height="195">
+</canvas>
+
+<script type="text/javascript">
+    const coords = [
+        [[0, 0], [215, 0], [430, 0], [645, 0]],
+        [[0, 270], [215, 270]]
+    ]
+
+    const $canvas = document.getElementById("canvas");
+    const context = $canvas.getContext("2d");
+
+    const $image = document.createElement('img');
+    $image.src = "sprite.png"
+
+    let positionX = 0;
+    let positionY = 0;
+
+    const intervalID = setInterval(updateImage, 200)
+
+    function updateImage() {
+        if (positionY === 1 && positionX === 2) {
+            positionX = 0
+            positionY = 0
+        }
+
+        context.clearRect(0, 0, $canvas.width, $canvas.height);
+        context.drawImage($image, coords[positionY][positionX][0], coords[positionY][positionX][1], 215, 272, 0, 0, 87, 104)
+        
+        if (positionX === 3) {
+            positionX = 0;
+            positionY++;
+        } else {
+            positionX++;
+        }
+    }
+</script>
+</body>
+</html>
